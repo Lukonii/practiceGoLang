@@ -6,11 +6,11 @@ import (
 )
 
 type Network struct {
-	ID              int      `json:"id" validate:"required"`
-	Name            string   `json:"name"`
-	Platform        string   `json:"platform"`
-	OldestOsVersion string   `json:"oldestOsVersion"`
-	CountryList     []string `json:"countryList"`
+	ID           int      `json:"id" validate:"required"`
+	Name         string   `json:"name"`
+	Platform     string   `json:"platform"`
+	SuppVersions []string `json:"suppVersions"`
+	CountryList  []string `json:"countryList"`
 }
 
 type Networks []*Network
@@ -38,17 +38,31 @@ var FacebookCountries = [5]string{"IT", "RS", "SL", "A", "D"}
 
 var networkList = []*Network{
 	&Network{
-		ID:              1,
-		Name:            "AdMob",
-		Platform:        "Android",
-		OldestOsVersion: "9.0",
-		CountryList:     AdMobCountries[:],
+		ID:           1,
+		Name:         "AdMob",
+		Platform:     "Android",
+		SuppVersions: []string{"8.0.0", "8.8.7", "10.0.0", "15.5.0"}, //between 1-2, 3-4
+		CountryList:  AdMobCountries[:],
 	},
 	&Network{
-		ID:              2,
-		Name:            "Facebook",
-		Platform:        "Android",
-		OldestOsVersion: "9.0",
-		CountryList:     FacebookCountries[:],
+		ID:           2,
+		Name:         "AdMob",
+		Platform:     "IOS",
+		SuppVersions: []string{"10.0.0", "14.3.0"},
+		CountryList:  AdMobCountries[:],
+	},
+	&Network{
+		ID:           3,
+		Name:         "Facebook",
+		Platform:     "Android",
+		SuppVersions: []string{"8.0.0", "15.5.0"},
+		CountryList:  FacebookCountries[:],
+	},
+	&Network{
+		ID:           4,
+		Name:         "Facebook",
+		Platform:     "IOS",
+		SuppVersions: []string{"10.0.0", "14.3.0"},
+		CountryList:  FacebookCountries[:],
 	},
 }

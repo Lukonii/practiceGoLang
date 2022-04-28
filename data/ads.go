@@ -28,26 +28,6 @@ func (a *Ad) FromJSON(r io.Reader) error {
 	e := json.NewDecoder(r)
 	return e.Decode(a)
 }
-func (ads *Ads) FilterAdsByType(adt int) Ads {
-	var filtered = Ads{}
-
-	adtype := ""
-	switch adt {
-	case 1:
-		adtype = AdTypes[0] //banner
-	case 2:
-		adtype = AdTypes[1] //interstitial
-	case 3:
-		adtype = AdTypes[2] //reward
-	}
-
-	for i := 0; i < len(adList); i++ {
-		if adList[i].AdType == adtype {
-			filtered = append(filtered, adList[i])
-		}
-	}
-	return filtered
-}
 
 var adList = []*Ad{
 	&Ad{
@@ -118,6 +98,62 @@ var adList = []*Ad{
 		NetworkId: 1,
 		AdType:    "reward",
 		Score:     5,
+		Link:      "https://linktoad.com",
+	},
+	&Ad{
+		ID:        11,
+		NetworkId: 3,
+		AdType:    "reward",
+		Score:     20,
+		Link:      "https://linktoad.com",
+	},
+	&Ad{
+		ID:        12,
+		NetworkId: 3,
+		AdType:    "reward",
+		Score:     30,
+		Link:      "https://linktoad.com",
+	},
+	&Ad{
+		ID:        13,
+		NetworkId: 3,
+		AdType:    "reward",
+		Score:     20,
+		Link:      "https://linktoad.com",
+	},
+	&Ad{
+		ID:        14,
+		NetworkId: 3,
+		AdType:    "reward",
+		Score:     10,
+		Link:      "https://linktoad.com",
+	},
+	&Ad{
+		ID:        15,
+		NetworkId: 3,
+		AdType:    "banner",
+		Score:     20,
+		Link:      "https://linktoad.com",
+	},
+	&Ad{
+		ID:        16,
+		NetworkId: 3,
+		AdType:    "banner",
+		Score:     30,
+		Link:      "https://linktoad.com",
+	},
+	&Ad{
+		ID:        17,
+		NetworkId: 3,
+		AdType:    "banner",
+		Score:     20,
+		Link:      "https://linktoad.com",
+	},
+	&Ad{
+		ID:        18,
+		NetworkId: 3,
+		AdType:    "banner",
+		Score:     10,
 		Link:      "https://linktoad.com",
 	},
 }

@@ -7,7 +7,7 @@ import (
 
 type Mobile struct {
 	ID          int    `json:"id"`
-	Platform    string `json:"platform" validate:"required"`
+	Platform    string `json:"platform"`
 	OsVersion   string `json:"osVersion"`
 	AppName     string `json:"appName"`
 	AppVersion  string `json:"appVersion"`
@@ -60,5 +60,21 @@ var mobileList = []*Mobile{
 		AppName:     "AppOne",
 		AppVersion:  "1.2.2",
 		CountryCode: "SL",
+	},
+	&Mobile{
+		ID:          4,
+		Platform:    "Android",
+		OsVersion:   "7.1",
+		AppName:     "AppOne",
+		AppVersion:  "1.2.2",
+		CountryCode: "SL",
+	},
+	&Mobile{
+		ID:          5,
+		Platform:    "IOS",
+		OsVersion:   "10.1",
+		AppName:     "AppOne",
+		AppVersion:  "1.2.1",
+		CountryCode: "CN",
 	},
 }
