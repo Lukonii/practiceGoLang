@@ -70,17 +70,6 @@ func (n Networks) MiddlewareValidateNetwork(next http.Handler) http.Handler {
 			http.Error(rw, "Error reading network", http.StatusBadRequest)
 			return
 		}
-		// validate the network
-		/*err = net.Validate()
-		if err != nil {
-			n.l.Println("[ERROR] validating network", err)
-			http.Error(
-				rw,
-				fmt.Sprintf("Error validating network: %s", err),
-				http.StatusBadRequest,
-			)
-			return
-		}*/
 		// add network to the context
 		ctx := context.WithValue(r.Context(), KeyNetwork{}, net)
 		r = r.WithContext(ctx)

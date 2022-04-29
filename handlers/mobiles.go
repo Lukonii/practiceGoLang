@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -67,21 +68,6 @@ func (m *Mobiles) GetMobileNetworks(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 	src.GetNeworskForGivenMobile(id, rw)
-	/*
-		for j := 0; j < len(availableNetworks); j++ {
-			m.l.Println("Good network: ", availableNetworks[j])
-		}
-	*/
-	/*vars := mux.Vars(r)
-	id, err := strconv.Atoi(vars["id"])
-	if err != nil {
-		http.Error(rw, "Unable to convert id", http.StatusBadRequest)
-		return
-	}
-	m.l.Println("GET best network for given mobile id: ", id)
-	mob := r.Context().Value(KeyMobile{}).(data.Mobile) //cast interface to data
-	m.l.Println("Mobile: ", mob)
-	*/
 }
 func (m *Mobiles) GetSuggestedAds(rw http.ResponseWriter, r *http.Request) {
 	m.l.Println("Sugg ads")
@@ -109,6 +95,17 @@ func (m Mobiles) MiddlewareValidateMobile(next http.Handler) http.Handler {
 		if err != nil {
 			m.l.Println("[ERROR] deserializinig mobile", err)
 			http.Error(rw, "Error reading mobile", http.StatusBadRequest)
+			return
+		}
+		// validate the mobile
+		err = mob.Validate()
+		if err != nil {
+			m.l.Println("[ERROR] validating product", err)
+			http.Error(
+				rw,
+				fmt.Sprintf("Error validating product: %s", err),
+				http.StatusBadRequest,
+			)
 			return
 		}
 		// add mobile to the context

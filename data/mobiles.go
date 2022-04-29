@@ -4,11 +4,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+
+	"github.com/go-playground/validator/v10"
 )
 
 type Mobile struct {
 	ID          int    `json:"id"`
-	Platform    string `json:"platform"`
+	Platform    string `json:"platform" validate:"required"`
 	OsVersion   string `json:"osVersion"`
 	AppName     string `json:"appName"`
 	AppVersion  string `json:"appVersion"`
@@ -32,12 +34,18 @@ func (m *Mobile) FromJSON(r io.Reader) error {
 	return e.Decode(m)
 }
 
+// validation for platform
+func (m *Mobile) Validate() error {
+	validate := validator.New()
+	return validate.Struct(m)
+}
+
 // GetMobiles returns a list of mobiles
 func GetMobiles() Mobiles {
 	return mobileList
 }
 func AddMobile(m *Mobile) {
-	m.ID = getNextNetID()
+	m.ID = getNextMobID()
 	mobileList = append(mobileList, m)
 }
 func getNextMobID() int {
