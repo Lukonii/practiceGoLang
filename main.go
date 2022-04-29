@@ -25,6 +25,7 @@ func main() {
 	router := mux.NewRouter()
 
 	getRouter := router.Methods(http.MethodGet).Subrouter()
+	getRouter.HandleFunc("/", dh.Wellcome)
 	getRouter.HandleFunc("/network", nh.GetNetworks)
 	getRouter.HandleFunc("/mobile", mh.GetMobiles)
 	getRouter.HandleFunc("/mobile-{id:[0-9]+}", mh.GetMobileNetworks)
