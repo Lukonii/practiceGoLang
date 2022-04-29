@@ -17,6 +17,10 @@ type Dashboard struct {
 func NewDashboard(l *log.Logger) *Dashboard {
 	return &Dashboard{l}
 }
+func (d *Dashboard) Wellcome(rw http.ResponseWriter, r *http.Request) {
+	json.NewEncoder(rw).Encode("This app has no frontend!")
+	json.NewEncoder(rw).Encode("Read more: https://github.com/Lukonii/practiceGoLang/blob/main/README.md")
+}
 func (d *Dashboard) GetDashboard(rw http.ResponseWriter, r *http.Request) {
 	d.l.Println("Handle GET Dashboard")
 	ads := data.GetAds()
