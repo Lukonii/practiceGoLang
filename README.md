@@ -5,7 +5,8 @@ Before we start clone this repo and in terminal install two necessary packages
 * go get github.com/go-playground/validator/v10
 
 ## How to use
-The site is set up on the *Google's App Engine* platform and can be accessed via the link *https://gobe-test.oa.r.appspot.com/*
+The site is set up on the *Google's App Engine* ~platform and can be accessed via the link *https://gobe-test.oa.r.appspot.com/*~
+not hosted any more but some screen shots are at the end of this page :).
 
 ### Navigation
 #### Ads
